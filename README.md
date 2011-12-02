@@ -1,6 +1,6 @@
 = rego-js-builder
 
-Description goes here.
+Build tasks for git js projects.
 
 == Contributing to rego-js-builder
  
@@ -14,6 +14,5 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2011 Alex. See LICENSE.txt for
+Copyright (c) 2011 Alex Tkachev. See LICENSE.txt for
 further details.
-
