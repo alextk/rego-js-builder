@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "lib/js_project_builder.rb",
     "lib/js_project_builder_tasks.rb",
     "lib/rego-js-builder.rb",
+    "rego-js-builder.gemspec",
     "spec/rego-js-builder_spec.rb",
     "spec/spec_helper.rb"
   ]
