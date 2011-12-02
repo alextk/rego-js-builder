@@ -17,10 +17,10 @@ Jeweler::Tasks.new do |gem|
   gem.name = "rego-js-builder"
   gem.homepage = "http://github.com/alextk/rego-js-builder"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Build tasks for git js projects}
+  gem.description = %Q{Build tasks for git js projects}
   gem.email = "tkachev.alex@gmail.com"
-  gem.authors = ["Alex"]
+  gem.authors = ["Alex Tkachev"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
@@ -38,8 +38,8 @@ end
 
 task :default => :spec
 
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
+require 'rdoc/task'
+RDoc::Task.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
