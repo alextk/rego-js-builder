@@ -2,10 +2,18 @@ require 'yaml'
 
 class JsProjectBuilder
   attr_reader :name, :description,
-              :dist_file_name, :dist_file_path, :dist_min_file_path, :dist_pack_file_path
+              :dist_file_name, :dist_file_path, :dist_min_file_path, :dist_pack_file_path,
+              :js_files
 
   def initialize(options = {})
-    @options = {:dist_dir => 'dist', :license_file => 'license.txt', :version_file_path => 'version.yml'}.update(options)
+    @options = {
+      :dist_dir => 'dist',
+      :src_dir => 'src',
+      :sass => false,
+      :sass_dir => 'src/sass',
+      :license_file => 'license.txt',
+      :version_file_path => 'version.yml'
+    }.update(options)
 
     @name = @options[:name]
     @description = @options[:description]
@@ -13,16 +21,25 @@ class JsProjectBuilder
     @dist_file_path = File.join(dist_dir, dist_file_name)
     @dist_min_file_path = @dist_file_path.ext('min.js')
     @dist_pack_file_path = @dist_file_path.ext('pack.js')
+    @js_files = @options[:js_files].collect{|name| File.join(self.src_dir, name)}
 
     @version_yml = YAML::load(File.open(@options[:version_file_path]))
+  end
+
+  def src_dir
+    @options[:src_dir]
   end
 
   def dist_dir
     @options[:dist_dir]
   end
 
-  def js_files
-    @options[:js_files]
+  def sass_dir
+    @options[:sass_dir]
+  end
+
+  def sass?
+    @options[:sass]
   end
 
   def license_file

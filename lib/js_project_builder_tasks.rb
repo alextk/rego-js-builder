@@ -13,7 +13,7 @@ class JsProjectBuilder
 
     private
     def define
-      task :default => [:clobber, :pack]
+      task :default => [:clobber, :pack] + (project_builder.sass? ? [:css] : [])
 
       directory project_builder.dist_dir
 
@@ -75,6 +75,17 @@ class JsProjectBuilder
 
         project_builder.join_files(project_builder.dist_pack_file_path, FileList[pack_min_file])
         File.delete(pack_min_file)
+      end
+
+      desc 'Create css from sass files (src/sass)'
+      task :css => :prepare do
+        puts "Creating css files..."
+        sh "sass -C --update #{project_builder.sass_dir}:#{project_builder.dist_dir}/css" do |ok, output|
+          ok or fail "Error running sass on #{project_builder.sass_dir}. \n #{output}"
+        end
+
+        puts "Copying css images..."
+        cp_r "#{project_builder.sass_dir}/images", "#{project_builder.dist_dir}/css"
       end
 
       namespace :version do
