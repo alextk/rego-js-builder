@@ -84,8 +84,10 @@ class JsProjectBuilder
           ok or fail "Error running sass on #{project_builder.sass_dir}. \n #{output}"
         end
 
-        puts "Copying css images..."
-        cp_r "#{project_builder.sass_dir}/images", "#{project_builder.dist_dir}/css"
+        if File.exists?("#{project_builder.sass_dir}/images")
+          puts "Copying css images..."
+          cp_r "#{project_builder.sass_dir}/images", "#{project_builder.dist_dir}/css"
+        end
       end
 
       namespace :version do
