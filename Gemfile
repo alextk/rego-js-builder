@@ -12,4 +12,5 @@ group :development do
   gem "rcov", ">= 0"
   gem "rdoc"
   gem "rego-ruby-ext"
+  gem "rake-hooks" # need so hooks can be added to tasks defined by this gem
 end
